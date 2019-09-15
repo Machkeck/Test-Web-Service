@@ -8,7 +8,7 @@ class App extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {query: ''};
+    this.state = {query: '', data: null, start: 2010, end: 2019};
     this.handleQueryChange = this.handleQueryChange.bind(this);
     this.handleQuerySubmit = this.handleQuerySubmit.bind(this);
   }
@@ -18,8 +18,7 @@ class App extends React.Component {
   }
 
   handleQuerySubmit(query){
-    // this.setState({query:query})
-    console.log('HANDLING SUBMIT')
+    console.log('HANDLING SUBMIT', this.state.query)
     this.callApi(this.state.query)
   }
 
@@ -27,7 +26,8 @@ class App extends React.Component {
     const fullQuery = `https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=${term}+AND+2011&datetype=pdat&retmax=100000&retmode=json`;
     axios.get(fullQuery)
     .then(res => {
-      console.log(res)
+      console.log('api', res);
+      this.setState({data:res.data.esearchresult.idlist});
     })
   }
 
@@ -42,7 +42,7 @@ class App extends React.Component {
         </div>
         <div className="App-ResultArea">
           <ResultArea
-          query={this.state.query}/>
+          data={this.state.data}/>
         </div>
       </div>
     );
