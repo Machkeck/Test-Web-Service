@@ -8,6 +8,7 @@ The autism or dyslexia diseases are both examples of queries outputting clear tr
 General queries such as "cancer" provide numbers higher than 100000. Handling of larger requests has not been implemented. 
 
 Due to the NCBI API limiting the number of requests to 10 per second (3 per second without api key) the maximal time span is 10(3) years.
+
 ---
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
