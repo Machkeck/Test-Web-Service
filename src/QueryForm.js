@@ -32,7 +32,7 @@ class QueryForm extends React.Component {
       <form onSubmit={this.handleSubmit}>
         <label>
           Disease:
-          <input type="text" value={this.props.query} onChange={this.handleChange} />
+          <input type="text" value={this.props.query} onChange={this.handleChange} placeholder="autism, dyslexia..." />
         </label>
         <label>
           Start Year:

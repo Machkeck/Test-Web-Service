@@ -4,6 +4,9 @@ requires node/npm to be launched locally.
 
 Demo: https://web-service-ncbi-esearch.herokuapp.com/
 
+The autism or dyslexia diseases are both examples of queries outputting clear trends.
+General queries such as "cancer" provide numbers higher than 100000. Handling of larger requests has not been implemented. 
+
 ---
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

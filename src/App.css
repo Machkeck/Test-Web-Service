@@ -23,6 +23,13 @@
   color: #61dafb;
 }
 
+.App-QueryArea > form {
+  background: #dde8f0;
+  display: flex;
+  justify-content: center;
+  padding: 5px;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
