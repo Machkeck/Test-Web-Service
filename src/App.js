@@ -4,7 +4,8 @@ import QueryForm from './QueryForm';
 import ResultArea from './ResultArea';
 import './App.css';
 
-const API_KEY = 'XXX';
+const API_KEY = process.env.REACT_APP_NCBI_API_KEY || 'XX';
+console.log('API', API_KEY)
 
 function createNumberRange(start, end){
   const s = parseInt(start),
