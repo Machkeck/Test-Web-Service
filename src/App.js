@@ -2,25 +2,10 @@ import React from 'react';
 import axios from 'axios';
 import QueryForm from './QueryForm';
 import ResultArea from './ResultArea';
+import {createNumberRange, checkRange} from './utils';
 import './App.css';
 
-const API_KEY = process.env.REACT_APP_NCBI_API_KEY || 'XX';
-console.log('API', API_KEY)
-
-function createNumberRange(start, end){
-  const s = parseInt(start),
-  e = parseInt(end);
-  return Array.from(new Array(e - s + 1), (x,i) => i+s);
-}
-
-function checkRange(start, end){
-  if (end<start){
-    return 'end date earlier than start date';
-  } else if(end-start>10){
-    return 'difference between start date and end date is greater than 10 years';
-  }
-  return null;
-}
+const API_KEY = process.env.REACT_APP_NCBI_API_KEY || 'XX ';
 
 class App extends React.Component {
 
@@ -46,10 +31,8 @@ class App extends React.Component {
   }
 
   handleQuerySubmit(query){
-    console.log('HANDLING SUBMIT', this.state.query)
     const errorMsg = checkRange(this.state.start, this.state.end);
     if(errorMsg != null){
-      console.log('error')
       this.setState({error: errorMsg});
     } else {
       this.callApi(this.state.query)
@@ -72,10 +55,8 @@ class App extends React.Component {
   }
 
   callApi(term){
-    console.log('calling', this.state)
     axios.all(this.createPromiseArray(term, parseInt(this.state.start), parseInt(this.state.end)))
     .then(res => {
-      console.log('res', res)
       const results = res.map(response => response.data.esearchresult.idlist)
       this.setState({data: results, range:createNumberRange(this.state.start, this.state.end), error:null});
     })
