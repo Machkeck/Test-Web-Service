@@ -5,6 +5,8 @@ class QueryForm extends React.Component {
   constructor(props) {
     super(props);
     this.handleChange = this.handleChange.bind(this);
+    this.handleStartChange = this.handleStartChange.bind(this);
+    this.handleEndChange = this.handleEndChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -12,8 +14,15 @@ class QueryForm extends React.Component {
     this.props.onQueryChange(event.target.value)
   }
 
+  handleStartChange(event){
+    this.props.onStartChange(event.target.value)
+  }
+
+  handleEndChange(event){
+    this.props.onEndChange(event.target.value)
+  }
+
   handleSubmit(event) {
-    // alert('A name was submitted: ' + this.state.value);
     event.preventDefault();
     this.props.onQuerySubmit(event.target.value)
   }
@@ -22,8 +31,16 @@ class QueryForm extends React.Component {
     return (
       <form onSubmit={this.handleSubmit}>
         <label>
-          Name:
+          Disease:
           <input type="text" value={this.props.query} onChange={this.handleChange} />
+        </label>
+        <label>
+          Start Year:
+        <input name="startYear" type="number" value={this.props.start} onChange={this.handleStartChange}/>
+        </label>
+        <label>
+          End Year:
+          <input name="endYear" type="number" value={this.props.end} onChange={this.handleEndChange}/>
         </label>
         <input type="submit" value="Submit" />
       </form>
